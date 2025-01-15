@@ -18,8 +18,28 @@ object StringOperations {
       | our fathers""".stripMargin.replaceAll("\n", "")
 
 
-
   def main(args: Array[String]): Unit = {
+    val productsStr = "eggs, milk, butter, Coco Puffs"
+    val products: Array[String] = productsStr.split(",")
+    println(products.mkString("Array(", ", ", ")"))
+    println(productsStr.split(",").map(_.trim).mkString("Array(", ", ", ")"))
 
+    val name = "Joshua"
+    val age = 21
+    val weight = 95.3
+    println(s"$name is $age years old, and weighs ${weight + 1} kilos.")
+
+    val upper = "Hello, world".filter(_ != 'l').map(_.toUpper)
+    for (c <- upper) println(c)
+    val upper1 = for (c <- upper) yield c.toUpper
+
+    val res = upper1.increment
+    println(res)
+  }
+
+  // Custom methods
+  // package object utils {
+  implicit class StringImprovements(s: String) {
+    def increment: String = s.map(c => (c +1).toChar)
   }
 }
